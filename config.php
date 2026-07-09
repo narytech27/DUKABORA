@@ -13,7 +13,7 @@ ini_set('log_errors', 1);
 
 $DB_HOST = 'localhost';
 $DB_USER = 'root';
-$DB_PASS = '';
+$DB_PASS = 'david';
 $DB_NAME = 'duka_bora';
 
 // Turn off mysqli's default "throw warnings" behaviour so we can control

@@ -6,7 +6,7 @@ $links = [
     'add_product'   => ['add_product.php', 'Add Product'],
     'record_sale'   => ['record_sale.php', 'Record Sale'],
     'sales_history' => ['sales_history.php', 'Sales History'],
-    'report'        => ['report.php', 'Report'],
+    'report'        => ['index.php', 'Report'],
 ];
 ?>
 <nav class="ledger-nav">

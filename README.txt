@@ -28,7 +28,7 @@ duka_bora/
   delete_product.php     Module 2 — delete product
   record_sale.php        Module 3 — record a sale, deducts stock
   sales_history.php      Module 3 — JOIN query, all past sales
-  report.php              Module 3 — today's totals, top 3, low stock alert
+  index.php              Module 3 — today's totals, top 3, low stock alert
   includes/nav.php       Module 4 — shared navigation bar
   includes/header.php    Module 4 — shared page header
   includes/footer.php    Module 4 — shared page footer
