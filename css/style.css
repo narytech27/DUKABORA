@@ -1,0 +1,323 @@
+/* ============================================================
+   Duka Bora — Stylesheet
+   Design concept: a shopkeeper's ledger book.
+   Deep ink-green for structure, warm marigold for the one accent,
+   hairline rules standing in for ruled ledger paper, and a
+   monospace face for every figure so columns of numbers line up
+   the way they would in a real stock book.
+   ============================================================ */
+
+:root {
+  --ink:        #17342E;   /* ledger ink / primary */
+  --ink-light:  #234A41;
+  --paper:      #FFFFFF;
+  --paper-dim:  #F4F6F4;
+  --rule:       #DAE1DC;   /* hairline ledger rule */
+  --gold:       #C98A3E;   /* the one accent — a wax-stamp marigold */
+  --text:       #1E2422;
+  --text-dim:   #5B6862;
+
+  --stock-in:     #2F7A52;
+  --stock-in-bg:  #E7F3EC;
+  --stock-low:    #A97418;
+  --stock-low-bg: #FBF0DC;
+  --stock-out:    #B23A34;
+  --stock-out-bg: #FBE7E5;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter', -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--paper-dim);
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px);
+  background-size: 100% 2.1rem;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+/* ---------- Header / signboard ---------- */
+.shop-header {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 1.6rem 1.5rem 1.2rem;
+  border-bottom: 6px solid var(--gold);
+}
+
+.shop-header .inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.shop-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: .02em;
+  margin: 0;
+}
+
+.shop-title small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: .15rem;
+}
+
+.page-label {
+  font-family: var(--font-mono);
+  font-size: .8rem;
+  color: #C9D6D0;
+}
+
+/* ---------- Nav ---------- */
+nav.ledger-nav {
+  background: var(--ink-light);
+}
+
+nav.ledger-nav ul {
+  max-width: 1080px;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 1.5rem;
+}
+
+nav.ledger-nav a {
+  display: block;
+  padding: .8rem 1.1rem;
+  color: #E8ECEA;
+  text-decoration: none;
+  font-size: .92rem;
+  border-bottom: 3px solid transparent;
+  transition: background .15s, border-color .15s;
+}
+
+nav.ledger-nav a:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+nav.ledger-nav a.active {
+  border-bottom-color: var(--gold);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---------- Cards / panels ---------- */
+.panel {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-top: 1.6rem;
+  box-shadow: 0 1px 2px rgba(23,52,46,0.04);
+}
+
+.panel h2 {
+  font-family: var(--font-display);
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+
+.panel-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+/* ---------- Ledger banner (last viewed / notices) ---------- */
+.ledger-note {
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  background: var(--paper);
+  border-left: 4px solid var(--gold);
+  padding: .65rem 1rem;
+  margin-top: 1.5rem;
+  color: var(--text-dim);
+}
+
+/* ---------- Tables ---------- */
+table.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: .5rem;
+  font-size: .93rem;
+}
+
+table.ledger th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-dim);
+  border-bottom: 2px solid var(--ink);
+  padding: .6rem .7rem;
+}
+
+table.ledger td {
+  padding: .65rem .7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: middle;
+}
+
+table.ledger tbody tr:nth-child(even) { background: var(--paper-dim); }
+table.ledger tbody tr:hover { background: #EEF3F0; }
+
+.num { font-family: var(--font-mono); }
+
+/* ---------- Stock stamp badges ---------- */
+.stamp {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .25rem .55rem;
+  border-radius: 999px;
+  border: 1.5px solid currentColor;
+}
+
+.stamp.in    { color: var(--stock-in);  background: var(--stock-in-bg); }
+.stamp.low   { color: var(--stock-low); background: var(--stock-low-bg); }
+.stamp.out   { color: var(--stock-out); background: var(--stock-out-bg); }
+
+/* ---------- Buttons / links ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: .85rem;
+  font-weight: 600;
+  padding: .45rem .9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-edit   { background: var(--paper); border-color: var(--ink); color: var(--ink); }
+.btn-edit:hover { background: var(--ink); color: #fff; }
+
+.btn-delete { background: var(--paper); border-color: var(--stock-out); color: var(--stock-out); }
+.btn-delete:hover { background: var(--stock-out); color: #fff; }
+
+.btn-primary { background: var(--gold); color: #fff; border-color: var(--gold); }
+.btn-primary:hover { background: #B67A2F; }
+
+.actions { display: flex; gap: .5rem; }
+
+/* ---------- Forms ---------- */
+form.ledger-form label {
+  display: block;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin: 1rem 0 .3rem;
+}
+
+form.ledger-form input,
+form.ledger-form select {
+  width: 100%;
+  padding: .55rem .7rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: .95rem;
+  background: var(--paper);
+}
+
+form.ledger-form input:focus,
+form.ledger-form select:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+form.ledger-form .form-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  gap: .7rem;
+}
+
+/* ---------- Alerts ---------- */
+.alert {
+  padding: .75rem 1rem;
+  border-radius: 5px;
+  font-size: .9rem;
+  margin: 1.2rem 0 0;
+}
+
+.alert-success { background: var(--stock-in-bg); color: var(--stock-in); border: 1px solid var(--stock-in); }
+.alert-error   { background: var(--stock-out-bg); color: var(--stock-out); border: 1px solid var(--stock-out); }
+
+/* ---------- Stat tiles (report page) ---------- */
+.stat-tile {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 6px;
+  padding: 1.1rem 1.3rem;
+}
+
+.stat-tile .value {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  color: var(--gold);
+}
+
+.stat-tile .label {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #C9D6D0;
+}
+
+/* ---------- Footer ---------- */
+footer.shop-footer {
+  text-align: center;
+  font-size: .78rem;
+  color: var(--text-dim);
+  padding: 2rem 1rem 1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  table.ledger thead { display: none; }
+  table.ledger, table.ledger tbody, table.ledger tr, table.ledger td { display: block; width: 100%; }
+  table.ledger tr { border-bottom: 2px solid var(--ink); padding: .5rem 0; }
+  table.ledger td { border-bottom: none; padding: .3rem .2rem; }
+  table.ledger td::before {
+    content: attr(data-label);
+    display: inline-block;
+    width: 110px;
+    font-size: .7rem;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .panel-row { grid-template-columns: 1fr; }
+  .shop-header .inner { flex-direction: column; align-items: flex-start; }
+}
